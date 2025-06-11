@@ -18,7 +18,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 - Windows 10 Pro (22H2)
 - Ubuntu Linux 20.04 LTS
 
-<h2>Part 1 – Deploy Virtual Machines in Azure</h2> <h3>1. Create Azure Resources</h3>
+<h2>Deploy Virtual Machines in Azure</h2> <h3>1. Create Azure Resources</h3>
 
 - Sign in to the Azure Portal: https://portal.azure.com
 - Create a new Resource Group named: NetworkLab-RG
@@ -35,7 +35,7 @@ Create a Linux VM (Ubuntu):
 - Use Username/Password for authentication
 
 <img src="https://i.imgur.com/XOBm0X9.png" width="80%" /> <p> Creating two VMs on the same virtual network allows direct internal communication between them using private IP addresses. This is essential for observing peer-to-peer traffic and testing firewall behaviors in later steps. </p> <br />
-<h2>Part 2 – Observe Network Traffic Using Wireshark</h2>
+<h2>Observe Network Traffic Using Wireshark</h2>
 
 <h3>2. Connect to Windows VM</h3>
 
@@ -65,7 +65,7 @@ Create a Linux VM (Ubuntu):
 - Observe both internal and external ICMP traffic in Wireshark
 
 <p> This shows the difference between local (private network) and public (internet) ICMP activity. </p> <br />
-<h2>Part 3 – Configure Network Security Group and Observe More Protocols</h2>
+<h2>Configure Network Security Group and Observe More Protocols</h2>
 
 <h3>6. Block ICMP with NSG</h3>
 
