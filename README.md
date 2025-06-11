@@ -49,7 +49,7 @@ Create a Linux VM (Ubuntu):
 - On the Windows VM, download and install Wireshark
 - Open Wireshark and begin a packet capture on your main network interface
 
-<img src="https://i.imgur.com/bD2USwo.png" width="80%" /> <p> Wireshark is a powerful tool for real-time packet analysis. It lets us filter, inspect, and capture network traffic based on protocols like ICMP, SSH, DHCP, etc. </p> <br /> 
+<img src="https://i.imgur.com/ZBgdn3l.png" width="80%" /> <p> Wireshark is a powerful tool for real-time packet analysis. It lets us filter, inspect, and capture network traffic based on protocols like ICMP, SSH, DHCP, etc. </p> <br /> 
 
 <h3>4. Observe ICMP Traffic</h3>
 
@@ -57,7 +57,7 @@ Create a Linux VM (Ubuntu):
 - In the Windows VM, open Command Prompt and run: ping (Ubuntu IP)
 - In Wireshark, filter for icmp
 
-<img src="https://i.imgur.com/SIS58Ra.png" width="80%" /> <p> ICMP traffic is used for operations like pinging. This step helps visualize the echo request/reply behavior between the two VMs. </p> <br />
+<img src="https://i.imgur.com/GNby9Ie.png" width="80%" /> <p> ICMP traffic is used for operations like pinging. This step helps visualize the echo request/reply behavior between the two VMs. </p> <br />
 
 <h3>5. Ping External Website</h3>
 
@@ -74,14 +74,14 @@ Create a Linux VM (Ubuntu):
 - Add an inbound rule to deny ICMP
 - Back in the Windows VM, observe packet loss in Command Prompt and Wireshark
 
-<p> Blocking ICMP in the NSG demonstrates Azure’s built-in firewall controls and how they impact network traffic in real time. </p> <br />
+<img src="https://i.imgur.com/H0cci5W.png" width="80%" /> <p> Blocking ICMP in the NSG demonstrates Azure’s built-in firewall controls and how they impact network traffic in real time. </p> <br />
 
 <h3>7. Re-enable ICMP</h3>
 
 - Delete or disable the ICMP blocking rule
 - Observe the return of successful ping responses and ICMP packets in Wireshark
 
-<p> This reinforces how changes in NSG rules can instantly impact traffic behavior without rebooting the VM. </p> <br /> 
+<img src="https://i.imgur.com/jycDQCy.png" width="80%" /> <p> This reinforces how changes in NSG rules can instantly impact traffic behavior without rebooting the VM. </p> <br /> 
 
 <h3>8. Observe SSH Traffic</h3>
 
@@ -90,14 +90,17 @@ Create a Linux VM (Ubuntu):
 
 Enter your credentials, type commands, then type exit to disconnect
 
-<p> SSH traffic includes encrypted commands and responses. Even though it's encrypted, Wireshark can still show the metadata and packet exchanges. </p> <br />
+<img src="https://i.imgur.com/ESfcSbz.png" width="80%" /> <p> SSH traffic includes encrypted commands and responses. Even though it's encrypted, Wireshark can still show the metadata and packet exchanges. </p> <br />
 
 <h3>9. Observe DHCP Traffic</h3>
 
 - In Wireshark, filter for dhcp
-- Create dhcp.bat file using text edit with the commands ipconfig /release and ipconfig /renew
+- Create dhcp.bat file using notepad with the commands ipconfig /release and ipconfig /renew
 - In PowerShell (Admin), run: dchp.bat
 
+<img src="https://i.imgur.com/jG3t3bn.png" width="80%" />
+<img src="https://i.imgur.com/s7xfpuM.png" width="80%" />
+<img src="https://i.imgur.com/5boWo1z.png" width="80%" />
 <p> DHCP is responsible for assigning IP addresses. Renewing the IP address triggers a DHCP Discover/Offer/Request/Ack sequence, visible in Wireshark. </p> <br />
 
 <h3>10. Observe DNS Traffic</h3>
@@ -107,10 +110,12 @@ Enter your credentials, type commands, then type exit to disconnect
 nslookup google.com
 nslookup disney.com
 
+<img src="https://i.imgur.com/LpRFZin.png" width="80%" />
 <p> DNS converts domain names to IP addresses. These queries and their responses are clearly visible in packet capture. </p> <br />
 
 <h3>11. Observe RDP Traffic</h3>
 
 - Filter in Wireshark: tcp.port == 3389
 
+<img src="https://i.imgur.com/4pMl9S9.png" width="80%" />
 <p> RDP traffic is constant because it maintains an active visual session. Unlike protocols like SSH, RDP sends continuous screen updates, making it easy to identify. </p> <br />
