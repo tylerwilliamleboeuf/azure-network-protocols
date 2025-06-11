@@ -95,8 +95,9 @@ Enter your credentials, type commands, then type exit to disconnect
 <h3>9. Observe DHCP Traffic</h3>
 
 - In Wireshark, filter for dhcp
-- Create dhcp.bat file using notepad with the commands ipconfig /release and ipconfig /renew
-- In PowerShell (Admin), run: dchp.bat
+- Create a file using notepad with the commands ipconfig /release and ipconfig /renew
+- Save as dchp.bat to C:
+- In PowerShell (Admin), run: .\dchp.bat
 
 <img src="https://i.imgur.com/jG3t3bn.png" width="80%" />
 <img src="https://i.imgur.com/s7xfpuM.png"  />
