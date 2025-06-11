@@ -54,58 +54,63 @@ Create a Linux VM (Ubuntu):
 <h3>4. Observe ICMP Traffic</h3>
 
 - Retrieve the private IP address of your Ubuntu VM via the Azure Portal
-- In the Windows VM, open Command Prompt and run: ping <Ubuntu IP>
+- In the Windows VM, open Command Prompt and run: ping (Ubuntu IP)
 - In Wireshark, filter for icmp
 
-<img src="https://i.imgur.com/SIS58Ra.png" width="80%" /> <p> ICMP traffic is used for operations like pinging. This step helps visualize the echo request/reply behavior between the two VMs. </p> <br /> <h3>5. Ping External Website</h3>
-From the Windows VM, ping an external address: ping www.google.com
+<img src="https://i.imgur.com/SIS58Ra.png" width="80%" /> <p> ICMP traffic is used for operations like pinging. This step helps visualize the echo request/reply behavior between the two VMs. </p> <br />
 
-Observe both internal and external ICMP traffic in Wireshark
+<h3>5. Ping External Website</h3>
+
+- From the Windows VM, ping an external address: ping www.google.com
+- Observe both internal and external ICMP traffic in Wireshark
 
 <p> This shows the difference between local (private network) and public (internet) ICMP activity. </p> <br />
-<h2>Part 3 – Configure Network Security Group and Observe More Protocols</h2> <h3>6. Block ICMP with NSG</h3>
-Start a continuous ping to the Ubuntu VM: ping -t <Ubuntu IP>
+<h2>Part 3 – Configure Network Security Group and Observe More Protocols</h2>
 
-In Azure, navigate to the Network Security Group (NSG) for the Ubuntu VM
+<h3>6. Block ICMP with NSG</h3>
 
-Add an inbound rule to deny ICMP
+- Start a continuous ping to the Ubuntu VM: ping -t (Ubuntu IP)
+- In Azure, navigate to the Network Security Group (NSG) for the Ubuntu VM
+- Add an inbound rule to deny ICMP
+- Back in the Windows VM, observe packet loss in Command Prompt and Wireshark
 
-Back in the Windows VM, observe packet loss in Command Prompt and Wireshark
+<p> Blocking ICMP in the NSG demonstrates Azure’s built-in firewall controls and how they impact network traffic in real time. </p> <br />
 
-<p> Blocking ICMP in the NSG demonstrates Azure’s built-in firewall controls and how they impact network traffic in real time. </p> <br /> <h3>7. Re-enable ICMP</h3>
-Delete or disable the ICMP blocking rule
+<h3>7. Re-enable ICMP</h3>
 
-Observe the return of successful ping responses and ICMP packets in Wireshark
+- Delete or disable the ICMP blocking rule
+- Observe the return of successful ping responses and ICMP packets in Wireshark
 
-<p> This reinforces how changes in NSG rules can instantly impact traffic behavior without rebooting the VM. </p> <br /> <h3>8. Observe SSH Traffic</h3>
-In Wireshark, filter for ssh
+<p> This reinforces how changes in NSG rules can instantly impact traffic behavior without rebooting the VM. </p> <br /> 
 
-From Windows PowerShell, SSH into the Ubuntu VM:
-ssh labuser@<Ubuntu IP>
+<h3>8. Observe SSH Traffic</h3>
+
+- In Wireshark, filter for ssh
+- From Windows PowerShell, SSH into the Ubuntu VM: ssh labuser@(Ubuntu IP)
 
 Enter your credentials, type commands, then type exit to disconnect
 
-<p> SSH traffic includes encrypted commands and responses. Even though it's encrypted, Wireshark can still show the metadata and packet exchanges. </p> <br /> <h3>9. Observe DHCP Traffic</h3>
-In Wireshark, filter for dhcp
+<p> SSH traffic includes encrypted commands and responses. Even though it's encrypted, Wireshark can still show the metadata and packet exchanges. </p> <br />
 
-In PowerShell (Admin), run: ipconfig /renew
+<h3>9. Observe DHCP Traffic</h3>
 
-<p> DHCP is responsible for assigning IP addresses. Renewing the IP address triggers a DHCP Discover/Offer/Request/Ack sequence, visible in Wireshark. </p> <br /> <h3>10. Observe DNS Traffic</h3>
-Filter in Wireshark: dns
+- In Wireshark, filter for dhcp
+- Create dhcp.bat file using text edit with the commands ipconfig /release and ipconfig /renew
+- In PowerShell (Admin), run: dchp.bat
 
-In PowerShell, run:
+<p> DHCP is responsible for assigning IP addresses. Renewing the IP address triggers a DHCP Discover/Offer/Request/Ack sequence, visible in Wireshark. </p> <br />
+
+<h3>10. Observe DNS Traffic</h3>
+
+- Filter in Wireshark: dns
+- In PowerShell, run:
 nslookup google.com
 nslookup disney.com
 
-<p> DNS converts domain names to IP addresses. These queries and their responses are clearly visible in packet capture. </p> <br /> <h3>11. Observe RDP Traffic</h3>
-Filter in Wireshark: tcp.port == 3389
+<p> DNS converts domain names to IP addresses. These queries and their responses are clearly visible in packet capture. </p> <br />
+
+<h3>11. Observe RDP Traffic</h3>
+
+- Filter in Wireshark: tcp.port == 3389
 
 <p> RDP traffic is constant because it maintains an active visual session. Unlike protocols like SSH, RDP sends continuous screen updates, making it easy to identify. </p> <br />
-<h2>Lab Cleanup</h2>
-Close your Remote Desktop connection
-
-Delete the Resource Group NetworkLab-RG in the Azure Portal
-
-Verify that all associated resources (VMs, disks, NICs, etc.) are removed
-
-<p> Proper cleanup is essential to avoid ongoing charges and to practice good cloud resource hygiene. </p> <br />
