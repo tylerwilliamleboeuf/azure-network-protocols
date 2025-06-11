@@ -35,22 +35,27 @@ Create a Linux VM (Ubuntu):
 - Use Username/Password for authentication
 
 <img src="https://i.imgur.com/XOBm0X9.png" width="80%" /> <p> Creating two VMs on the same virtual network allows direct internal communication between them using private IP addresses. This is essential for observing peer-to-peer traffic and testing firewall behaviors in later steps. </p> <br />
-<h2>Part 2 – Observe Network Traffic Using Wireshark</h2> <h3>2. Connect to Windows VM</h3>
-Use Microsoft Remote Desktop (or RDP on Windows) to connect to your Windows 10 VM
+<h2>Part 2 – Observe Network Traffic Using Wireshark</h2>
 
-Log in using the credentials you created
+<h3>2. Connect to Windows VM</h3>
 
-<p> Remote Desktop Protocol (RDP) provides access to the virtual machine GUI, allowing you to install applications and monitor network activity. </p> <br /> <h3>3. Install and Launch Wireshark</h3>
-On the Windows VM, download and install Wireshark
+- Use Microsoft Remote Desktop (or RDP on Windows) to connect to your Windows 10 VM
+- Log in using the credentials you created
 
-Open Wireshark and begin a packet capture on your main network interface
+<p> Remote Desktop Protocol (RDP) provides access to the virtual machine GUI, allowing you to install applications and monitor network activity. </p> <br /> 
 
-<img src="https://i.imgur.com/bD2USwo.png" width="80%" /> <p> Wireshark is a powerful tool for real-time packet analysis. It lets us filter, inspect, and capture network traffic based on protocols like ICMP, SSH, DHCP, etc. </p> <br /> <h3>4. Observe ICMP Traffic</h3>
-Retrieve the private IP address of your Ubuntu VM via the Azure Portal
+<h3>3. Install and Launch Wireshark</h3>
 
-In the Windows VM, open Command Prompt and run: ping <Ubuntu IP>
+- On the Windows VM, download and install Wireshark
+- Open Wireshark and begin a packet capture on your main network interface
 
-In Wireshark, filter for icmp
+<img src="https://i.imgur.com/bD2USwo.png" width="80%" /> <p> Wireshark is a powerful tool for real-time packet analysis. It lets us filter, inspect, and capture network traffic based on protocols like ICMP, SSH, DHCP, etc. </p> <br /> 
+
+<h3>4. Observe ICMP Traffic</h3>
+
+- Retrieve the private IP address of your Ubuntu VM via the Azure Portal
+- In the Windows VM, open Command Prompt and run: ping <Ubuntu IP>
+- In Wireshark, filter for icmp
 
 <img src="https://i.imgur.com/SIS58Ra.png" width="80%" /> <p> ICMP traffic is used for operations like pinging. This step helps visualize the echo request/reply behavior between the two VMs. </p> <br /> <h3>5. Ping External Website</h3>
 From the Windows VM, ping an external address: ping www.google.com
