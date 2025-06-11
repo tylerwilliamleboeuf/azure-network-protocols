@@ -99,7 +99,7 @@ Enter your credentials, type commands, then type exit to disconnect
 - In PowerShell (Admin), run: dchp.bat
 
 <img src="https://i.imgur.com/jG3t3bn.png" width="80%" />
-<img src="https://i.imgur.com/s7xfpuM.png" width="80%" />
+<img src="https://i.imgur.com/s7xfpuM.png"  />
 <img src="https://i.imgur.com/5boWo1z.png" width="80%" />
 <p> DHCP is responsible for assigning IP addresses. Renewing the IP address triggers a DHCP Discover/Offer/Request/Ack sequence, visible in Wireshark. </p> <br />
 
